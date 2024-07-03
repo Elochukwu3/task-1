@@ -1,6 +1,7 @@
 const express = require('express');
 const route = require('./routes/index');
 const dotenv = require('dotenv');
+const path = require('path');
 dotenv.config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use((req, res, next) => {
     next();
 })
 // app.use(ipMiddleware);
+app.use(express.static(path.join(__dirname, 'views')));
 app.use('/', route)
 
 app.listen(port, ()=>{
